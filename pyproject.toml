@@ -40,7 +40,7 @@ major_tags = ["break", "major"]
 minor_tags = ["feat", "minor"]
 patch_tags = ["fix", "perf", "patch", "build", "chore", "ci", "docs", "style", "refactor", "test"]
 allowed_tags = ["feat", "fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "break", "major", "minor", "patch"]
-default_bump_level = "patch"
+default_bump_level = 2
 
 [project.optional-dependencies]
 dev = [
