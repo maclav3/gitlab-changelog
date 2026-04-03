@@ -11,6 +11,7 @@ import sys
 import os
 from . import gitlab_client
 from . import formatter
+from . import __init__ as pkg_info
 
 PROJECT_ID = os.getenv('PROJECT_ID')
 GITLAB_TOKEN = os.getenv('GITLAB_TOKEN')
@@ -23,6 +24,7 @@ def main():
     parser.add_argument("env", nargs="?", help="Environment name (required unless --list is used)")
     parser.add_argument("-from", dest="from_ref", help="Git reference to compare against (defaults to project's default branch, e.g., main or master)")
     parser.add_argument("--list", action="store_true", help="List all available environments")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {pkg_info.__version__}")
     
     args = parser.parse_args()
     
