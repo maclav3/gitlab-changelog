@@ -52,10 +52,28 @@ Manual versioning is no longer required. Just use the appropriate commit prefixe
 
 ## Usage
 
+### GitLab Personal Access Token
+
+To use this tool, you need a GitLab Personal Access Token (PAT) with at least the `read_api` scope. This scope allows the tool to read project details, list environments, and compare commits.
+
+#### How to obtain one:
+1. Log in to your GitLab instance.
+2. In the top-right corner, select your avatar.
+3. Select **Edit profile**.
+4. In the left sidebar, select **Access Tokens**.
+5. Select **Add new token**.
+6. Enter a name and an optional expiry date for the token.
+7. Select the `read_api` scope.
+8. Select **Create personal access token**.
+9. Copy the token and store it securely (you won't be able to see it again).
+
+### Environment Variables
+
 Set the required environment variables:
 ```bash
 export GITLAB_TOKEN=<your_token>
 export PROJECT_ID=<your_project_id>
+export GITLAB_URL=https://gitlab.com  # Optional, defaults to https://gitlab.com
 ```
 
 Run the tool:
