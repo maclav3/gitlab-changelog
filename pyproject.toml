@@ -37,8 +37,9 @@ match = "master"
 [tool.semantic_release.commit_parser_options]
 major_tags = ["break", "major"]
 minor_tags = ["feat", "minor"]
-patch_tags = ["fix", "perf", "patch"]
+patch_tags = ["fix", "perf", "patch", "build", "chore", "ci", "docs", "style", "refactor", "test"]
 allowed_tags = ["feat", "fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "break", "major", "minor", "patch"]
+default_bump_level = 1
 
 [project.optional-dependencies]
 test = [

@@ -42,13 +42,13 @@ This project uses [Taskfile](https://taskfile.dev/) to manage local development 
 
 This project uses [Semantic Versioning](https://semver.org/) and is automated via [Python Semantic Release](https://python-semantic-release.readthedocs.io/).
 
-Versions are automatically updated and tagged in CI based on commit messages. This project follows [Conventional Commits](https://www.conventionalcommits.org/).
+Versions are automatically updated and tagged in CI. This project follows [Conventional Commits](https://www.conventionalcommits.org/), but is configured to always bump the version.
 
 - **Major** version bump: Commits with `BREAKING CHANGE` or containing `#major` / `break:` prefix.
 - **Minor** version bump: Commits with `feat:` or `#minor` / `minor:` prefix.
-- **Patch** version bump: Commits with `fix:`, `perf:` or `#patch` / `patch:` prefix.
+- **Patch** version bump: Every other commit.
 
-Manual versioning is no longer required. Just use the appropriate commit prefixes.
+Manual versioning is no longer required. **Every commit to `master` will trigger at least a patch version bump**, regardless of the commit message.
 
 ## Usage
 
