@@ -34,21 +34,53 @@ def test_get_environments(mock_get):
     )
 
 
-@patch("gitlab_changelog.gitlab_client.get_environments")
-def test_get_environment_commit_success(mock_get_envs):
-    mock_get_envs.return_value = [
-        {"name": "production", "last_deployment": {"sha": "1234567890"}}
-    ]
+@patch("gitlab_changelog.gitlab_client.requests.get")
+def test_get_environment_commit_success(mock_get):
+    mock_response = MagicMock()
+    mock_response.json.return_value = [{"sha": "1234567890"}]
+    mock_response.raise_for_status.return_value = None
+    mock_get.return_value = mock_response
 
     sha = gitlab_client.get_environment_commit("project123", "production")
     assert sha == "1234567890"
+    mock_get.assert_called_once_with(
+        "https://gitlab.com/api/v4/projects/project123/deployments",
+        headers={"PRIVATE-TOKEN": None},
+        params={
+            "environment": "production",
+            "status": "success",
+            "order_by": "created_at",
+            "sort": "desc",
+            "per_page": 1
+        }
+    )
 
 
-def test_get_environment_commit_not_found():
-    with patch("gitlab_changelog.gitlab_client.get_environments") as mock_get_envs:
-        mock_get_envs.return_value = [{"name": "staging"}]
-        with pytest.raises(ValueError, match="Environment 'production' not found"):
-            gitlab_client.get_environment_commit("project123", "production")
+@patch("gitlab_changelog.gitlab_client.requests.get")
+def test_get_environment_commit_not_found(mock_get):
+    mock_response = MagicMock()
+    mock_response.json.return_value = []
+    mock_response.raise_for_status.return_value = None
+    mock_get.return_value = mock_response
+
+    with pytest.raises(ValueError, match="Environment 'production' not found or has no successful deployments"):
+        gitlab_client.get_environment_commit("project123", "production")
+
+
+@patch("gitlab_changelog.gitlab_client.requests.get")
+def test_get_commit(mock_get):
+    mock_response = MagicMock()
+    mock_response.json.return_value = {"id": "abc123", "title": "test commit"}
+    mock_response.raise_for_status.return_value = None
+    mock_get.return_value = mock_response
+
+    commit = gitlab_client.get_commit("project123", "abc123")
+
+    assert commit == {"id": "abc123", "title": "test commit"}
+    mock_get.assert_called_once_with(
+        "https://gitlab.com/api/v4/projects/project123/repository/commits/abc123",
+        headers={"PRIVATE-TOKEN": None},
+    )
 
 
 @patch("gitlab_changelog.gitlab_client.requests.get")

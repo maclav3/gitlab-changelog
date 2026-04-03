@@ -67,6 +67,13 @@ To use this tool, you need a GitLab Personal Access Token (PAT) with at least th
 8. Select **Create personal access token**.
 9. Copy the token and store it securely (you won't be able to see it again).
 
+### GitLab Project ID
+
+To find your GitLab Project ID:
+1. Navigate to your project on GitLab.
+2. Go to **Settings > General**.
+3. The Project ID is displayed in a text box at the top of the page.
+
 ### Environment Variables
 
 Set the required environment variables:
