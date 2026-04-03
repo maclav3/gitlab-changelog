@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.5 (2026-04-03)
+
+### Major
+
+- Ready for release
+  ([`daf5feb`](https://github.com/maclav3/gitlab-changelog/commit/daf5feb4f35fb22416ef2a837c792e5f78c231ca))
+
+
 ## v0.1.4 (2026-04-03)
 
 ### Bug Fixes
