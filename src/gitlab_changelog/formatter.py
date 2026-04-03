@@ -38,6 +38,12 @@ def format_changelog(commits, project_id):
         )
         return
 
+    from . import gitlab_client
+
+    # Get project path for proper URLs
+    project = gitlab_client.get_project(project_id)
+    project_path = project.get("path_with_namespace", str(project_id))
+
     print(f"\n📋 Changelog: {len(commits)} commit(s) awaiting deployment\n")
     print("=" * 80)
 
@@ -48,7 +54,8 @@ def format_changelog(commits, project_id):
         date = datetime.fromisoformat(commit["created_at"].replace("Z", "+00:00"))
         formatted_date = date.strftime("%Y-%m-%d %H:%M")
 
-        commit_url = f"{GITLAB_URL}/{project_id}/-/commit/{commit['id']}"
+        commit_url = f"{GITLAB_URL}/{project_path}/-/commit/{commit['id']}"
 
-        print(f"• [{sha}]({commit_url}) {title}")
+        print(f"• {title} [{sha}]")
+        print(f"  🔗 {commit_url}")
         print(f"  👤 {author} | 📅 {formatted_date}\n")

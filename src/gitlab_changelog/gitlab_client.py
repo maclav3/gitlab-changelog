@@ -9,12 +9,18 @@ def get_headers():
     return {"PRIVATE-TOKEN": GITLAB_TOKEN}
 
 
-def get_default_branch(project_id):
-    """Get the default branch of the project."""
+def get_project(project_id):
+    """Get project details."""
     url = f"{GITLAB_URL}/api/v4/projects/{project_id}"
     response = requests.get(url, headers=get_headers())
     response.raise_for_status()
-    return response.json().get("default_branch", "main")
+    return response.json()
+
+
+def get_default_branch(project_id):
+    """Get the default branch of the project."""
+    project = get_project(project_id)
+    return project.get("default_branch", "main")
 
 
 def get_environments(project_id):
