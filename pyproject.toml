@@ -33,6 +33,7 @@ build_command = "pip install build && python -m build"
 
 [tool.semantic_release.branches.master]
 match = "master"
+prerelease = false
 
 [tool.semantic_release.commit_parser_options]
 major_tags = ["break", "major"]
