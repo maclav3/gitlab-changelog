@@ -4,8 +4,6 @@ A tool to generate a changelog of commits between an environment's current deplo
 
 ## Installation
 
-The recommended way to install this tool is using [pipx](https://github.com/pypa/pipx):
-
 ```bash
 pipx install git+https://github.com/maclav3/gitlab-changelog.git
 ```
@@ -16,13 +14,8 @@ pip install --user pipx
 pipx ensurepath
 ```
 
-Alternatively, you can install it directly from the GitHub repository using `pip`:
+### In local development:
 
-```bash
-pip install git+https://github.com/maclav3/gitlab-changelog.git
-```
-
-Alternatively, for local development:
 ```bash
 git clone https://github.com/maclav3/gitlab-changelog.git
 cd gitlab-changelog
@@ -31,59 +24,32 @@ pip install -e ".[dev]"
 
 ### Development
 
-This project uses [Taskfile](https://taskfile.dev/) to manage local development tasks. These commands will automatically create a local virtual environment (`.venv`) and install dependencies if they are missing or if `pyproject.toml` changes.
-
-- **Format code**: `task fmt`
-- **Lint code**: `task lint`
-- **Create venv manually**: `task venv`
-
-### Versioning
-
-This project uses [Semantic Versioning](https://semver.org/) and is automated via [Python Semantic Release](https://python-semantic-release.readthedocs.io/).
-
-Versions are automatically updated and tagged in CI. This project follows [Conventional Commits](https://www.conventionalcommits.org/), but is configured to always bump the version.
-
-- **Major** version bump: Commits with `BREAKING CHANGE` or containing `#major` / `break:` prefix.
-- **Minor** version bump: Commits with `feat:` or `#minor` / `minor:` prefix.
-- **Patch** version bump: Every other commit.
-
-Manual versioning is no longer required. **Every commit to `master` will trigger at least a patch version bump**, regardless of the commit message.
+Available tasks (requires [Taskfile](https://taskfile.dev/)):
+- `task fmt` - Format code
+- `task lint` - Lint code
+- `task venv` - Create venv manually
+- `task install` - Install the package locally
 
 ## Usage
 
-### GitLab Personal Access Token
+### Setup
 
-To use this tool, you need a GitLab Personal Access Token (PAT) with at least the `read_api` scope. This scope allows the tool to read project details, list environments, and compare commits.
+**GitLab Personal Access Token** - Create a token with `read_api` scope:
+1. GitLab → Avatar → Edit profile → Access Tokens → Add new token
+2. Select `read_api` scope
+3. Copy and save the token
 
-#### How to obtain one:
-1. Log in to your GitLab instance.
-2. In the top-right corner, select your avatar.
-3. Select **Edit profile**.
-4. In the left sidebar, select **Access Tokens**.
-5. Select **Add new token**.
-6. Enter a name and an optional expiry date for the token.
-7. Select the `read_api` scope.
-8. Select **Create personal access token**.
-9. Copy the token and store it securely (you won't be able to see it again).
+**Project ID** - Find it at: Settings → General (displayed at the top)
 
-### GitLab Project ID
+### Running
 
-To find your GitLab Project ID:
-1. Navigate to your project on GitLab.
-2. Go to **Settings > General**.
-3. The Project ID is displayed in a text box at the top of the page.
-
-### Environment Variables
-
-Set the required environment variables:
 ```bash
 export GITLAB_TOKEN=<your_token>
 export PROJECT_ID=<your_project_id>
-export GITLAB_URL=https://gitlab.com  # Optional, defaults to https://gitlab.com
-```
 
-Run the tool:
-```bash
-gitlab-changelog <environment_name> [-from <ref>]
+# List all environments
 gitlab-changelog --list
+
+# Generate changelog for an environment
+gitlab-changelog <environment_name> [-from <ref>]
 ```
