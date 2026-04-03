@@ -1,0 +1,41 @@
+version: '3'
+
+vars:
+  VENV_BIN: "{{if eq OS \"windows\"}}.venv/Scripts{{else}}.venv/bin{{end}}"
+  PYTHON: "{{.VENV_BIN}}/python"
+
+tasks:
+  venv:
+    desc: Create a local virtual environment and install development dependencies
+    sources:
+      - pyproject.toml
+    generates:
+      - .venv/bin/activate
+    cmds:
+      - python3 -m venv .venv
+      - "{{.PYTHON}} -m pip install --upgrade pip"
+      - "{{.PYTHON}} -m pip install -e \".[test,dev]\""
+
+  fmt:
+    desc: Format the code
+    deps: [venv]
+    cmds:
+      - "{{.VENV_BIN}}/black src tests"
+
+  lint:
+    desc: Lint the code
+    deps: [venv]
+    cmds:
+      - "{{.VENV_BIN}}/flake8 src tests --count --select=E9,F63,F7,F82 --show-source --statistics"
+      - "{{.VENV_BIN}}/ruff check src tests"
+
+  test:
+    desc: Run tests
+    deps: [venv]
+    cmds:
+      - "{{.VENV_BIN}}/pytest"
+
+  install:
+    desc: Install the package locally for development (in the current environment)
+    cmds:
+      - pip install -e ".[test,dev]"

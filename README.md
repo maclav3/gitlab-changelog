@@ -26,10 +26,19 @@ Alternatively, for local development:
 ```bash
 git clone https://github.com/maclav3/gitlab-changelog.git
 cd gitlab-changelog
-pip install -e .
+pip install -e ".[test,dev]"
 ```
 
-## Versioning
+### Development
+
+This project uses [Taskfile](https://taskfile.dev/) to manage local development tasks. These commands will automatically create a local virtual environment (`.venv`) and install dependencies if they are missing or if `pyproject.toml` changes.
+
+- **Format code**: `task fmt`
+- **Lint code**: `task lint`
+- **Run tests**: `task test`
+- **Create venv manually**: `task venv`
+
+### Versioning
 
 This project uses [Semantic Versioning](https://semver.org/). To update the version:
 
