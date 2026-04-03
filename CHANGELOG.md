@@ -1,6 +1,28 @@
 # CHANGELOG
 
 
+## v0.1.4 (2026-04-03)
+
+### Bug Fixes
+
+- Add caching and remove unnecessary CI deps
+  ([`60181e3`](https://github.com/maclav3/gitlab-changelog/commit/60181e3fd69b1c17ecb8249bb42ec1bd41977bc8))
+
+- Default_bump_level
+  ([`702ac46`](https://github.com/maclav3/gitlab-changelog/commit/702ac460f7fb620e5743751ee21ef4602ecd7dcc))
+
+### Major
+
+- Ready for release
+  ([`e27e77f`](https://github.com/maclav3/gitlab-changelog/commit/e27e77f8c029ea766d5bf16e06f8dd0b018e9f72))
+
+- Ready for release
+  ([`b8b868d`](https://github.com/maclav3/gitlab-changelog/commit/b8b868d60e593d8a1137ccc46a3d72219348965a))
+
+- Ready for release
+  ([`966d789`](https://github.com/maclav3/gitlab-changelog/commit/966d7893f9e769e0cd5b594cf65cc1fdd0ed63b6))
+
+
 ## v0.1.3 (2026-04-03)
 
 ### Documentation
