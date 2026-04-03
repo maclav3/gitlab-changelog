@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.1 (2026-04-03)
+
+### Major
+
+- Ready for release
+  ([`97ce6ae`](https://github.com/maclav3/gitlab-changelog/commit/97ce6aef1a348230e6286ce15cf19858a1583732))
+
+
 ## v0.1.5 (2026-04-03)
 
 ### Major
