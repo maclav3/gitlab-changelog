@@ -13,17 +13,21 @@ def list_environments(envs, project_id=None):
     from . import gitlab_client
 
     print("\n🌍 Available Environments:")
-    print("=" * 30)
+    print("=" * 80)
     for env in envs:
         name = env["name"]
         if project_id:
             try:
-                sha = gitlab_client.get_environment_commit(project_id, name)[:8]
+                sha = gitlab_client.get_environment_commit(project_id, name)
+                commit = gitlab_client.get_commit(project_id, sha)
+                short_sha = sha[:8]
+                title = commit.get("title", "")
+                print(f"• {name:20} {short_sha}  {title}")
             except ValueError:
-                sha = "No deployment"
+                print(f"• {name:20} No deployment")
         else:
-            sha = "Unknown"
-        print(f"• {name:20} (Current SHA: {sha})")
+            print(f"• {name:20} Unknown")
+    print()
 
 
 def format_changelog(commits, project_id):

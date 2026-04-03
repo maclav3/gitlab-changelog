@@ -45,6 +45,14 @@ def get_environment_commit(project_id, env_name):
     return deployments[0]["sha"]
 
 
+def get_commit(project_id, sha):
+    """Get commit details by SHA."""
+    url = f"{GITLAB_URL}/api/v4/projects/{project_id}/repository/commits/{sha}"
+    response = requests.get(url, headers=get_headers())
+    response.raise_for_status()
+    return response.json()
+
+
 def get_commits_between(project_id, from_sha, to_ref):
     """Get all commits between from_sha and to_ref."""
     url = f"{GITLAB_URL}/api/v4/projects/{project_id}/repository/compare"
