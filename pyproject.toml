@@ -20,6 +20,26 @@ dependencies = [
     "requests",
 ]
 
+[tool.semantic_release]
+version_variables = [
+    "src/gitlab_changelog/__init__.py:__version__",
+]
+version_toml = [
+    "pyproject.toml:project.version",
+]
+# Use the same configuration as the manual branch setup if needed, 
+# but v9 usually uses [tool.semantic_release.branches.main] style or matches current branch.
+build_command = "pip install build && python -m build"
+
+[tool.semantic_release.branches.master]
+match = "master"
+
+[tool.semantic_release.commit_parser_options]
+major_tags = ["break", "major"]
+minor_tags = ["feat", "minor"]
+patch_tags = ["fix", "perf", "patch"]
+allowed_tags = ["feat", "fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "break", "major", "minor", "patch"]
+
 [project.optional-dependencies]
 test = [
     "pytest",

@@ -40,18 +40,15 @@ This project uses [Taskfile](https://taskfile.dev/) to manage local development 
 
 ### Versioning
 
-This project uses [Semantic Versioning](https://semver.org/). To update the version:
+This project uses [Semantic Versioning](https://semver.org/) and is automated via [Python Semantic Release](https://python-semantic-release.readthedocs.io/).
 
-1. Update the `version` field in `pyproject.toml`.
-2. Commit the change.
-3. Tag the commit:
-   ```bash
-   git tag -a vX.Y.Z -m "Release vX.Y.Z"
-   ```
-4. Push the tag:
-   ```bash
-   git push origin vX.Y.Z
-   ```
+Versions are automatically updated and tagged in CI based on commit messages. This project follows [Conventional Commits](https://www.conventionalcommits.org/).
+
+- **Major** version bump: Commits with `BREAKING CHANGE` or containing `#major` / `break:` prefix.
+- **Minor** version bump: Commits with `feat:` or `#minor` / `minor:` prefix.
+- **Patch** version bump: Commits with `fix:`, `perf:` or `#patch` / `patch:` prefix.
+
+Manual versioning is no longer required. Just use the appropriate commit prefixes.
 
 ## Usage
 
