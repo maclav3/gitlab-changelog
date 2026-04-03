@@ -42,10 +42,6 @@ allowed_tags = ["feat", "fix", "perf", "build", "chore", "ci", "docs", "style", 
 default_bump_level = 1
 
 [project.optional-dependencies]
-test = [
-    "pytest",
-    "pytest-mock",
-]
 dev = [
     "black",
     "flake8",

@@ -26,7 +26,7 @@ Alternatively, for local development:
 ```bash
 git clone https://github.com/maclav3/gitlab-changelog.git
 cd gitlab-changelog
-pip install -e ".[test,dev]"
+pip install -e ".[dev]"
 ```
 
 ### Development
@@ -35,7 +35,6 @@ This project uses [Taskfile](https://taskfile.dev/) to manage local development 
 
 - **Format code**: `task fmt`
 - **Lint code**: `task lint`
-- **Run tests**: `task test`
 - **Create venv manually**: `task venv`
 
 ### Versioning
