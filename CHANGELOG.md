@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## v0.1.2 (2026-04-03)
+
+
 ## v0.1.1 (2026-04-03)
 
 ### Bug Fixes
@@ -10,6 +13,9 @@
 
 - Get rid of tests, they are useless
   ([`4e49add`](https://github.com/maclav3/gitlab-changelog/commit/4e49add9ee6b46a48e31028a1b6a2fb54de55d41))
+
+- Properly format the links and names
+  ([`7dcf576`](https://github.com/maclav3/gitlab-changelog/commit/7dcf576f5d64f28e5897187dc85dd8869f6771bf))
 
 ### Major
 
