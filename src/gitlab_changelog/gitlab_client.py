@@ -26,13 +26,23 @@ def get_environments(project_id):
 
 
 def get_environment_commit(project_id, env_name):
-    """Get the latest commit SHA deployed to an environment."""
-    envs = get_environments(project_id)
-    for env in envs:
-        if env["name"] == env_name:
-            if env.get("last_deployment"):
-                return env["last_deployment"]["sha"]
-    raise ValueError(f"Environment '{env_name}' not found or has no deployments")
+    """Get the latest successfully deployed commit SHA for an environment."""
+    url = f"{GITLAB_URL}/api/v4/projects/{project_id}/deployments"
+    params = {
+        "environment": env_name,
+        "status": "success",
+        "order_by": "created_at",
+        "sort": "desc",
+        "per_page": 1
+    }
+    response = requests.get(url, headers=get_headers(), params=params)
+    response.raise_for_status()
+    deployments = response.json()
+
+    if not deployments:
+        raise ValueError(f"Environment '{env_name}' not found or has no successful deployments")
+
+    return deployments[0]["sha"]
 
 
 def get_commits_between(project_id, from_sha, to_ref):

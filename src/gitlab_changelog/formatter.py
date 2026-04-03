@@ -4,18 +4,25 @@ from datetime import datetime
 GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.com")
 
 
-def list_environments(envs):
+def list_environments(envs, project_id=None):
     """List all available environments for the project."""
     if not envs:
         print("No environments found.")
         return
 
+    from . import gitlab_client
+
     print("\n🌍 Available Environments:")
     print("=" * 30)
     for env in envs:
         name = env["name"]
-        last_deployment = env.get("last_deployment", {})
-        sha = last_deployment.get("sha", "No deployment")[:8]
+        if project_id:
+            try:
+                sha = gitlab_client.get_environment_commit(project_id, name)[:8]
+            except ValueError:
+                sha = "No deployment"
+        else:
+            sha = "Unknown"
         print(f"• {name:20} (Current SHA: {sha})")
 
 

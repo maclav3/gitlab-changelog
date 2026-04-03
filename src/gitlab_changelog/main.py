@@ -49,7 +49,7 @@ def main():
     try:
         if args.list:
             envs = gitlab_client.get_environments(PROJECT_ID)
-            formatter.list_environments(envs)
+            formatter.list_environments(envs, PROJECT_ID)
             return
 
         if not args.env:
