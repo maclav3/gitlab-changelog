@@ -1,7 +1,20 @@
 # CHANGELOG
 
 
+## v0.1.3 (2026-04-03)
+
+### Documentation
+
+- Streamlined README.md
+  ([`a39f656`](https://github.com/maclav3/gitlab-changelog/commit/a39f656d017be7c2fdf0dab33392f679ad90060b))
+
+
 ## v0.1.2 (2026-04-03)
+
+### Documentation
+
+- Streamline README.md
+  ([`27e3193`](https://github.com/maclav3/gitlab-changelog/commit/27e319325f20892fbe6a5bc543011430a597335e))
 
 
 ## v0.1.1 (2026-04-03)
