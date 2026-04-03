@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gitlab-changelog"
+version = "0.1.0"
+authors = [
+  { name="Junie", email="junie@jetbrains.com" },
+]
+description = "Generate a changelog of commits between an environment's current deployment and a git reference on GitLab."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests",
+]
+
+[project.scripts]
+gitlab-changelog = "gitlab_changelog.main:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
