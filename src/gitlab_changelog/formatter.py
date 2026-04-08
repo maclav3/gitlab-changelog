@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 
 GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.com")
 
