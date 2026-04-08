@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v1.0.2 (2026-04-08)
+
+### Bug Fixes
+
+- Linter
+  ([`dbdef44`](https://github.com/maclav3/gitlab-changelog/commit/dbdef442791f96812e3c919b3ae69ab5741835fc))
+
+- Show the timestamps in local timezone
+  ([`f748ef7`](https://github.com/maclav3/gitlab-changelog/commit/f748ef76e20d7527978391d1079f056591e25b7d))
+
+
 ## v1.0.1 (2026-04-03)
 
 ### Major
