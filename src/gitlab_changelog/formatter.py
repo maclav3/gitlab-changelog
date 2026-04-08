@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 GITLAB_URL = os.getenv("GITLAB_URL", "https://gitlab.com")
 
@@ -52,7 +52,8 @@ def format_changelog(commits, project_id):
         title = commit["title"]
         author = commit["author_name"]
         date = datetime.fromisoformat(commit["created_at"].replace("Z", "+00:00"))
-        formatted_date = date.strftime("%Y-%m-%d %H:%M")
+        local_date = date.astimezone(tz=None)
+        formatted_date = local_date.strftime("%Y-%m-%d %H:%M %Z")
 
         commit_url = f"{GITLAB_URL}/{project_path}/-/commit/{commit['id']}"
 
