@@ -60,3 +60,9 @@ def format_changelog(commits, project_id):
         print(f"• {title} [{sha}]")
         print(f"  🔗 {commit_url}")
         print(f"  👤 {author} | 📅 {formatted_date}\n")
+
+    newest_sha = commits[-1]["id"]
+    pipeline = gitlab_client.get_latest_pipeline(project_id, newest_sha)
+    if pipeline:
+        print("=" * 80)
+        print(f"🚀 Latest pipeline (deployment link): {pipeline['web_url']}")
