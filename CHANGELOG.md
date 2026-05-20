@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.1.0 (2026-05-20)
+
+### Features
+
+- Bump api version #minor
+  ([`c6a8716`](https://github.com/maclav3/gitlab-changelog/commit/c6a87162f5bf09c1d78bbd749dc6a3e914502c6d))
+
+
 ## v1.0.2 (2026-04-08)
 
 ### Bug Fixes

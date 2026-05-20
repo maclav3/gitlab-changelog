@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gitlab-changelog"
-version = "1.0.2"
+version = "1.1.0"
 authors = [
   { name="Junie", email="junie@jetbrains.com" },
 ]
@@ -19,6 +19,17 @@ classifiers = [
 dependencies = [
     "requests",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "ruff",
+]
+
+[project.scripts]
+gitlab-changelog = "gitlab_changelog.main:run"
+
 
 [tool.semantic_release]
 version_variables = [
@@ -42,15 +53,6 @@ patch_tags = ["fix", "perf", "patch", "build", "chore", "ci", "docs", "style", "
 allowed_tags = ["feat", "fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "break", "major", "minor", "patch"]
 default_bump_level = 2
 
-[project.optional-dependencies]
-dev = [
-    "black",
-    "flake8",
-    "ruff",
-]
-
-[project.scripts]
-gitlab-changelog = "gitlab_changelog.main:run"
 
 [tool.setuptools.packages.find]
 where = ["src"]
