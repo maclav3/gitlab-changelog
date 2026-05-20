@@ -66,3 +66,15 @@ def get_commits_between(project_id, from_sha, to_ref):
     response = requests.get(url, headers=get_headers(), params=params)
     response.raise_for_status()
     return response.json().get("commits", [])
+
+
+def get_latest_pipeline(project_id, sha):
+    """Get the latest pipeline for a given commit SHA. Returns None if no pipeline exists."""
+    url = f"{GITLAB_URL}/api/v4/projects/{project_id}/pipelines"
+    params = {"sha": sha, "order_by": "id", "sort": "desc", "per_page": 1}
+    response = requests.get(url, headers=get_headers(), params=params)
+    response.raise_for_status()
+    pipelines = response.json()
+    if not pipelines:
+        return None
+    return pipelines[0]
